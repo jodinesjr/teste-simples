@@ -1,14 +1,403 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World!</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Board - Candidatos Prontos para Entrevistas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: white;
+            padding: 4rem 0;
+        }
+        .card {
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Talent Board</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Encontre os Melhores Talentos</h1>
+            <p class="lead mb-4">Candidatos pré-selecionados e prontos para entrevistas finais</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section class="mb-5">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Buscar por nome ou cargo">
+                </div>
+                <div class="col-md-4">
+                    <select id="verticalFilter" class="form-select">
+                        <option value="">Todas as Verticais</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select id="experienceFilter" class="form-select">
+                        <option value="">Todos os Níveis de Experiência</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section id="candidateList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Candidate cards will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2023 Talent Board. Todos os direitos reservados.</p>
+            <div class="mt-3">
+                <a href="#" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-dark me-3"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-dark me-3"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const candidates = [
+            {
+                nome: "Analista de Produtos Financeiros",
+                vertical: "Bancos e Serv Financeiros",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66fc01a6ed5ec48cf071bbbf"
+            },
+            {
+                nome: "Project Owner",
+                vertical: "Bancos e Serv Financeiros",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/67081ae8743fca5af88c1f19"
+            },
+            {
+                nome: "Diretor Comercial",
+                vertical: "Comercial & Vendas",
+                nivel: "Diretor",
+                link: "https://app.harpio.com.br/job/67166905e7fb489b2c95c3cd"
+            },
+            {
+                nome: "Executivos de Negócios - BaaS",
+                vertical: "Comercial & Vendas",
+                nivel: "SaaS",
+                link: "https://app.harpio.com.br/job/6728e1891cf3e326237c731e"
+            },
+            {
+                nome: "Especialista de Investimentos",
+                vertical: "Finanças",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66b688174128dd19a598941d"
+            },
+            {
+                nome: "Gerente de Vendas",
+                vertical: "Finanças",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66b68b9b4128dd19a598e084"
+            },
+            {
+                nome: "Controller",
+                vertical: "Finanças",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66b68cc74128dd19a598fa36"
+            },
+            {
+                nome: "Gerente de Vendas - Varejo",
+                vertical: "Finanças",
+                nivel: "Varejo - Gte Sr",
+                link: "https://app.harpio.com.br/job/66d5b490ed5ec48cf02d7ae3/perfis?tab=Perfil+2"
+            },
+            {
+                nome: "Analista de Investimentos",
+                vertical: "Finanças",
+                nivel: "Sênior",
+                link: "https://app.harpio.com.br/job/672291871cf3e32623f245bb"
+            },
+            {
+                nome: "Analista Administrativo Fiscal",
+                vertical: "Finanças",
+                nivel: "Júnior",
+                link: "https://app.harpio.com.br/job/67364b211cf3e32623a2060d"
+            },
+            {
+                nome: "Comprador",
+                vertical: "Funções Adm",
+                nivel: "Diretos e Indiretos Inbound",
+                link: "https://app.harpio.com.br/job/66f46aaced5ec48cf0cc1132"
+            },
+            {
+                nome: "Especialista de Marketing (Growth)",
+                vertical: "Marketing",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66fc052bed5ec48cf0720b15"
+            },
+            {
+                nome: "Gerente de Projetos - BPO",
+                vertical: "Operaçoes",
+                nivel: "Compliance",
+                link: "https://app.harpio.com.br/job/67365de11cf3e32623a3d147"
+            },
+            {
+                nome: "Gerente de Customer Success",
+                vertical: "Operações",
+                nivel: "Gte CS e CX",
+                link: "https://app.harpio.com.br/job/670ec9dae7fb489b2cefb15a"
+            },
+            {
+                nome: "Engenheiro de Processos",
+                vertical: "Quimico",
+                nivel: "Gte - Óleo & Gás",
+                link: "https://app.harpio.com.br/job/66f46020ed5ec48cf0cb25ed"
+            },
+            {
+                nome: "Gerente de Recursos Humanos",
+                vertical: "RH",
+                nivel: "Gerente Sr",
+                link: "https://app.harpio.com.br/job/670d21a1e7fb489b2cca91a5"
+            },
+            {
+                nome: "Coordenador de Sistemas",
+                vertical: "Saúde",
+                nivel: "Seguros / Saúde",
+                link: "https://app.harpio.com.br/job/671a6a69e7fb489b2cedc1e6"
+            },
+            {
+                nome: "Gerente Linhas Financeiras",
+                vertical: "Seguros",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66ba7a3ed1ae5cb55e555f57"
+            },
+            {
+                nome: "Especialista de Resseguros",
+                vertical: "Seguros",
+                nivel: "Subscritor - P&C",
+                link: "https://app.harpio.com.br/job/66ba7b6ad1ae5cb55e5578ba"
+            },
+            {
+                nome: "Analista de Produtos",
+                vertical: "Seguros",
+                nivel: "Sênior",
+                link: "https://app.harpio.com.br/job/66c3bf49d1ae5cb55e1d9724"
+            },
+            {
+                nome: "Atuário Pricing",
+                vertical: "Seguros",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66be90bad1ae5cb55eae0f38"
+            },
+            {
+                nome: "Especialista de Seguros",
+                vertical: "Seguros",
+                nivel: "RC Transportes",
+                link: "https://app.harpio.com.br/job/66fbf012ed5ec48cf0703828"
+            },
+            {
+                nome: "Analista de Seguros Benefícios",
+                vertical: "Seguros",
+                nivel: "Faturamento",
+                link: "https://app.harpio.com.br/job/6710364ce7fb489b2c0ee4a0"
+            },
+            {
+                nome: "Gerente Comercial",
+                vertical: "Seguros",
+                nivel: "Canais Estratégicos e Parcerias (Afinidades)",
+                link: "https://app.harpio.com.br/job/671652c3e7fb489b2c93d688"
+            },
+            {
+                nome: "Especialista de Linhas Financeiras",
+                vertical: "Seguros",
+                nivel: "Especialista D&O",
+                link: "https://app.harpio.com.br/job/66b6535c4128dd19a59417f4"
+            },
+            {
+                nome: "Analista de Linhas Financeiras",
+                vertical: "Seguros",
+                nivel: "Sr - D&O e E&O",
+                link: "https://app.harpio.com.br/job/66b64fd94128dd19a593cb4c"
+            },
+            {
+                nome: "Analista de Sinistros",
+                vertical: "Seguros",
+                nivel: "Property",
+                link: "https://app.harpio.com.br/job/672297601cf3e32623f2c986"
+            },
+            {
+                nome: "Supervisor de Sinistros",
+                vertical: "Seguros",
+                nivel: "Sinistros, Property e Frotas",
+                link: "https://app.harpio.com.br/job/672380961cf3e3262306dde1"
+            },
+            {
+                nome: "Analista de Implantação",
+                vertical: "Seguros",
+                nivel: "Saúde, Odonto, Vida",
+                link: "https://app.harpio.com.br/job/6729464e1cf3e32623852e4f"
+            },
+            {
+                nome: "Especialista Seguros - Riscos Financeiros",
+                vertical: "Seguros",
+                nivel: "D&O, E&O, Garantia",
+                link: "https://app.harpio.com.br/job/673fe6e51cf3e3262374291c?utm_source=push&utm_medium=emmkt&utm_campaign=Especialista%20Seguros%20"
+            },
+            {
+                nome: "Desenvolvedor JAVA",
+                vertical: "Tecnologia",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66b691774128dd19a5995f84"
+            },
+            {
+                nome: "Analista de Sistemas",
+                vertical: "Tecnologia",
+                nivel: "Sênior",
+                link: "https://app.harpio.com.br/job/66cf95c5ed5ec48cf0a9029f"
+            },
+            {
+                nome: "SAP Test Lead",
+                vertical: "Tecnologia",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66be5bffd1ae5cb55ea9970b"
+            },
+            {
+                nome: "Diretor Financeiro",
+                vertical: "Tecnologia",
+                nivel: "CFO",
+                link: "https://app.harpio.com.br/job/66e0a55aed5ec48cf01b65b2/perfis?tab=Perfil+1"
+            },
+            {
+                nome: "Product Designer",
+                vertical: "Tecnologia",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66fbfe23ed5ec48cf0716d2e"
+            },
+            {
+                nome: "Desenvolvedor Back-End .Net",
+                vertical: "Tecnologia",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/66fedf3eed5ec48cf0b0bfd1"
+            },
+            {
+                nome: "Tech Lead . NET",
+                vertical: "Tecnologia",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/6706b7d4743fca5af86dcf5b"
+            },
+            {
+                nome: "Desenvolvedor .Net",
+                vertical: "Tecnologia",
+                nivel: "Sênior",
+                link: "https://app.harpio.com.br/job/6707cc6a743fca5af8855b65"
+            },
+            {
+                nome: "Diretor de Marketing",
+                vertical: "Varejo",
+                nivel: "Varejo + Bens de consumo",
+                link: "https://app.harpio.com.br/job/67179c0de7fb489b2caff757/perfis?tab=Perfil+2"
+            },
+            {
+                nome: "Diretor Comercial e Vendas",
+                vertical: "Varejo",
+                nivel: "",
+                link: "https://app.harpio.com.br/job/6722811d1cf3e32623f0dc12"
+            }
+        ];
+
+        function renderCandidates(candidatesToRender) {
+            const candidateList = document.getElementById('candidateList');
+            candidateList.innerHTML = '';
+
+            candidatesToRender.forEach(candidate => {
+                const card = document.createElement('div');
+                card.className = 'col';
+                card.innerHTML = `
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">${candidate.nome}</h5>
+                            <p class="card-text"><i class="bi bi-briefcase me-2"></i>${candidate.vertical}</p>
+                            <p class="card-text"><i class="bi bi-person-badge me-2"></i>${candidate.nivel || 'Não especificado'}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <a href="${candidate.link}" class="btn btn-primary w-100" target="_blank">Ver Perfil</a>
+                        </div>
+                    </div>
+                `;
+                candidateList.appendChild(card);
+            });
+        }
+
+        function populateFilters() {
+            const verticalFilter = document.getElementById('verticalFilter');
+            const experienceFilter = document.getElementById('experienceFilter');
+
+            const verticals = [...new Set(candidates.map(c => c.vertical))];
+            const experiences = [...new Set(candidates.map(c => c.nivel).filter(Boolean))];
+
+            verticals.forEach(vertical => {
+                const option = document.createElement('option');
+                option.value = vertical;
+                option.textContent = vertical;
+                verticalFilter.appendChild(option);
+            });
+
+            experiences.forEach(experience => {
+                const option = document.createElement('option');
+                option.value = experience;
+                option.textContent = experience;
+                experienceFilter.appendChild(option);
+            });
+        }
+
+        function filterCandidates() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedVertical = document.getElementById('verticalFilter').value;
+            const selectedExperience = document.getElementById('experienceFilter').value;
+
+            const filteredCandidates = candidates.filter(candidate => {
+                const matchesSearch = candidate.nome.toLowerCase().includes(searchTerm) || 
+                                      candidate.vertical.toLowerCase().includes(searchTerm) ||
+                                      (candidate.nivel && candidate.nivel.toLowerCase().includes(searchTerm));
+                const matchesVertical = !selectedVertical || candidate.vertical === selectedVertical;
+                const matchesExperience = !selectedExperience || candidate.nivel === selectedExperience;
+
+                return matchesSearch && matchesVertical && matchesExperience;
+            });
+
+            renderCandidates(filteredCandidates);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', filterCandidates);
+        document.getElementById('verticalFilter').addEventListener('change', filterCandidates);
+        document.getElementById('experienceFilter').addEventListener('change', filterCandidates);
+
+        // Initial render
+        renderCandidates(candidates);
+        populateFilters();
+    </script>
 </body>
 </html>
