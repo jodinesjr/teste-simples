@@ -3,99 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent Board - Candidatos Prontos para Entrevistas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <title>Talent Board</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        .hero {
-            background: linear-gradient(135deg, #007bff, #6610f2);
-            color: white;
-            padding: 4rem 0;
-        }
-        .card {
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aubergine: {
+                            100: '#EEE6F7',
+                            200: '#DCCEEF',
+                            300: '#B99DDF',
+                            400: '#966BD0',
+                            500: '#733AC0',
+                            600: '#5009B0',
+                            700: '#40078D',
+                            800: '#30056A',
+                            900: '#200446',
+                        },
+                        lilac: {
+                            100: '#F8F5FF',
+                            200: '#F0EAFF',
+                            300: '#E2D5FF',
+                            400: '#D3C1FF',
+                            500: '#C5ACFF',
+                            600: '#B697FF',
+                            700: '#9279CC',
+                            800: '#6D5B99',
+                            900: '#493C66',
+                        },
+                        pink: {
+                            100: '#FFF5FF',
+                            200: '#FFEBFE',
+                            300: '#FED7FD',
+                            400: '#FEC4FC',
+                            500: '#FDB0FB',
+                            600: '#FD9CFA',
+                            700: '#CA7DC8',
+                            800: '#985E96',
+                            900: '#653E64',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Talent Board</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sobre">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contato">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-3">Encontre os Melhores Talentos</h1>
-            <p class="lead mb-4">Candidatos pré-selecionados e prontos para entrevistas finais</p>
+<body class="bg-lilac-100 min-h-screen">
+    <header class="bg-aubergine-500 text-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Talent Board</h1>
+            <nav>
+                <a href="#" class="text-pink-100 hover:text-pink-200 px-3 py-2 rounded-md text-sm font-medium">Sobre</a>
+                <a href="#" class="text-pink-100 hover:text-pink-200 px-3 py-2 rounded-md text-sm font-medium">Contato</a>
+            </nav>
         </div>
     </header>
 
-    <main class="container my-5">
-        <section class="mb-5">
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Buscar por nome ou cargo">
-                </div>
-                <div class="col-md-4">
-                    <select id="verticalFilter" class="form-select">
-                        <option value="">Todas as Verticais</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <select id="experienceFilter" class="form-select">
-                        <option value="">Todos os Níveis de Experiência</option>
-                    </select>
+    <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <!-- Hero Section -->
+            <div class="bg-aubergine-600 rounded-lg shadow-xl mb-8 text-white">
+                <div class="px-4 py-5 sm:p-6 text-center">
+                    <h2 class="text-3xl leading-9 font-extrabold sm:text-4xl sm:leading-10">
+                        Encontre os Melhores Talentos
+                    </h2>
+                    <p class="mt-3 max-w-md mx-auto text-xl leading-7 text-pink-400 sm:mt-5 sm:text-2xl sm:leading-9">
+                        Candidatos pré-selecionados e prontos para entrevistas finais
+                    </p>
                 </div>
             </div>
-        </section>
 
-        <section id="candidateList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <!-- Candidate cards will be dynamically inserted here -->
-        </section>
+            <!-- Statistics Section -->
+            <div class="bg-lilac-300 rounded-lg shadow-xl mb-8 p-6">
+                <h3 class="text-2xl font-bold text-aubergine-800 mb-4 text-center">Estatísticas</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <i class="bi bi-people text-4xl text-aubergine-500 mb-2"></i>
+                        <h4 class="text-xl font-bold text-aubergine-800" id="totalCandidates">0</h4>
+                        <p class="text-aubergine-700">Candidatos Disponíveis</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <i class="bi bi-briefcase text-4xl text-aubergine-500 mb-2"></i>
+                        <h4 class="text-xl font-bold text-aubergine-800" id="totalVerticals">0</h4>
+                        <p class="text-aubergine-700">Verticais de Negócio</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <i class="bi bi-graph-up text-4xl text-aubergine-500 mb-2"></i>
+                        <h4 class="text-xl font-bold text-aubergine-800" id="totalExperiences">0</h4>
+                        <p class="text-aubergine-700">Níveis de Experiência</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <i class="bi bi-building text-4xl text-aubergine-500 mb-2"></i>
+                        <h4 class="text-xl font-bold text-aubergine-800">100+</h4>
+                        <p class="text-aubergine-700">Empresas Parceiras</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="bg-white shadow rounded-lg mb-8">
+                <div class="px-4 py-5 sm:p-6">
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                        <div>
+                            <label for="search" class="block text-sm font-medium text-aubergine-800">Buscar</label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="bi bi-search text-aubergine-400"></i>
+                                </div>
+                                <input
+                                    type="text"
+                                    name="search"
+                                    id="search"
+                                    class="focus:ring-aubergine-500 focus:border-aubergine-500 block w-full pl-10 sm:text-sm border-lilac-300 rounded-md"
+                                    placeholder="Nome ou cargo"
+                                >
+                            </div>
+                        </div>
+                        <div>
+                            <label for="vertical" class="block text-sm font-medium text-aubergine-800">Vertical</label>
+                            <select
+                                id="vertical"
+                                name="vertical"
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-lilac-300 focus:outline-none focus:ring-aubergine-500 focus:border-aubergine-500 sm:text-sm rounded-md"
+                            >
+                                <option value="">Todas as Verticais</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="experience" class="block text-sm font-medium text-aubergine-800">Nível de Experiência</label>
+                            <select
+                                id="experience"
+                                name="experience"
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-lilac-300 focus:outline-none focus:ring-aubergine-500 focus:border-aubergine-500 sm:text-sm rounded-md"
+                            >
+                                <option value="">Todos os Níveis</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Candidates List -->
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg leading-6 font-medium text-aubergine-800 mb-4">
+                        Candidatos Disponíveis
+                    </h3>
+                    <div id="candidatesList" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <!-- Candidates will be dynamically inserted here -->
+                    </div>
+                    <!-- Pagination -->
+                    <div class="mt-8 flex justify-center">
+                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                            <button id="prevPage" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-lilac-300 bg-white text-sm font-medium text-aubergine-500 hover:bg-lilac-100">
+                                <span class="sr-only">Previous</span>
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                            <span id="pageInfo" class="relative inline-flex items-center px-4 py-2 border border-lilac-300 bg-white text-sm font-medium text-aubergine-700"></span>
+                            <button id="nextPage" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-lilac-300 bg-white text-sm font-medium text-aubergine-500 hover:bg-lilac-100">
+                                <span class="sr-only">Next</span>
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer class="bg-light py-4 mt-5">
-        <div class="container text-center">
-            <p>&copy; 2023 Talent Board. Todos os direitos reservados.</p>
-            <div class="mt-3">
-                <a href="#" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="text-dark me-3"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="text-dark me-3"><i class="bi bi-linkedin"></i></a>
-                <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+    <footer class="bg-aubergine-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="flex justify-center space-x-6 md:order-2">
+                <a href="#" class="text-pink-400 hover:text-pink-300">
+                    <span class="sr-only">Facebook</span>
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="text-pink-400 hover:text-pink-300">
+                    <span class="sr-only">Instagram</span>
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#" class="text-pink-400 hover:text-pink-300">
+                    <span class="sr-only">Twitter</span>
+                    <i class="bi bi-twitter"></i>
+                </a>
+            </div>
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-pink-400">&copy; 2023 Talent Board. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Constante de candidatos
         const candidates = [
             {
                 nome: "Analista de Produtos Financeiros",
                 vertical: "Bancos e Serv Financeiros",
-                nivel: "",
+                nivel: "Júnior",
                 link: "https://app.harpio.com.br/job/66fc01a6ed5ec48cf071bbbf"
             },
             {
                 nome: "Project Owner",
                 vertical: "Bancos e Serv Financeiros",
-                nivel: "",
+                nivel: "Pleno",
                 link: "https://app.harpio.com.br/job/67081ae8743fca5af88c1f19"
             },
             {
@@ -113,19 +231,19 @@
             {
                 nome: "Especialista de Investimentos",
                 vertical: "Finanças",
-                nivel: "",
+                nivel: "Sênior",
                 link: "https://app.harpio.com.br/job/66b688174128dd19a598941d"
             },
             {
                 nome: "Gerente de Vendas",
                 vertical: "Finanças",
-                nivel: "",
+                nivel: "Gerente",
                 link: "https://app.harpio.com.br/job/66b68b9b4128dd19a598e084"
             },
             {
                 nome: "Controller",
                 vertical: "Finanças",
-                nivel: "",
+                nivel: "Sênior",
                 link: "https://app.harpio.com.br/job/66b68cc74128dd19a598fa36"
             },
             {
@@ -155,7 +273,7 @@
             {
                 nome: "Especialista de Marketing (Growth)",
                 vertical: "Marketing",
-                nivel: "",
+                nivel: "Sênior",
                 link: "https://app.harpio.com.br/job/66fc052bed5ec48cf0720b15"
             },
             {
@@ -191,7 +309,7 @@
             {
                 nome: "Gerente Linhas Financeiras",
                 vertical: "Seguros",
-                nivel: "",
+                nivel: "Sênior",
                 link: "https://app.harpio.com.br/job/66ba7a3ed1ae5cb55e555f57"
             },
             {
@@ -209,7 +327,7 @@
             {
                 nome: "Atuário Pricing",
                 vertical: "Seguros",
-                nivel: "",
+                nivel: "Pleno",
                 link: "https://app.harpio.com.br/job/66be90bad1ae5cb55eae0f38"
             },
             {
@@ -269,7 +387,7 @@
             {
                 nome: "Desenvolvedor JAVA",
                 vertical: "Tecnologia",
-                nivel: "",
+                nivel: "Pleno",
                 link: "https://app.harpio.com.br/job/66b691774128dd19a5995f84"
             },
             {
@@ -281,7 +399,7 @@
             {
                 nome: "SAP Test Lead",
                 vertical: "Tecnologia",
-                nivel: "",
+                nivel: "Sênior",
                 link: "https://app.harpio.com.br/job/66be5bffd1ae5cb55ea9970b"
             },
             {
@@ -293,19 +411,19 @@
             {
                 nome: "Product Designer",
                 vertical: "Tecnologia",
-                nivel: "",
+                nivel: "Pleno",
                 link: "https://app.harpio.com.br/job/66fbfe23ed5ec48cf0716d2e"
             },
             {
                 nome: "Desenvolvedor Back-End .Net",
                 vertical: "Tecnologia",
-                nivel: "",
+                nivel: "Sênior",
                 link: "https://app.harpio.com.br/job/66fedf3eed5ec48cf0b0bfd1"
             },
             {
                 nome: "Tech Lead . NET",
                 vertical: "Tecnologia",
-                nivel: "",
+                nivel: "Sênior",
                 link: "https://app.harpio.com.br/job/6706b7d4743fca5af86dcf5b"
             },
             {
@@ -323,38 +441,27 @@
             {
                 nome: "Diretor Comercial e Vendas",
                 vertical: "Varejo",
-                nivel: "",
+                nivel: "Diretor",
                 link: "https://app.harpio.com.br/job/6722811d1cf3e32623f0dc12"
             }
         ];
 
-        function renderCandidates(candidatesToRender) {
-            const candidateList = document.getElementById('candidateList');
-            candidateList.innerHTML = '';
+        // Variáveis de paginação
+        let currentPage = 1;
+        const itemsPerPage = 9;
 
-            candidatesToRender.forEach(candidate => {
-                const card = document.createElement('div');
-                card.className = 'col';
-                card.innerHTML = `
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">${candidate.nome}</h5>
-                            <p class="card-text"><i class="bi bi-briefcase me-2"></i>${candidate.vertical}</p>
-                            <p class="card-text"><i class="bi bi-person-badge me-2"></i>${candidate.nivel || 'Não especificado'}</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="${candidate.link}" class="btn btn-primary w-100" target="_blank">Ver Perfil</a>
-                        </div>
-                    </div>
-                `;
-                candidateList.appendChild(card);
-            });
+        // Função para atualizar as estatísticas
+        function updateStatistics() {
+            document.getElementById('totalCandidates').textContent = candidates.length;
+            document.getElementById('totalVerticals').textContent = new Set(candidates.map(c => c.vertical)).size;
+            document.getElementById('totalExperiences').textContent = new Set(candidates.map(c => c.nivel).filter(Boolean)).size;
         }
 
+        // Função para preencher os selects de filtro
         function populateFilters() {
-            const verticalFilter = document.getElementById('verticalFilter');
-            const experienceFilter = document.getElementById('experienceFilter');
-
+            const verticalSelect = document.getElementById('vertical');
+            const experienceSelect = document.getElementById('experience');
+            
             const verticals = [...new Set(candidates.map(c => c.vertical))];
             const experiences = [...new Set(candidates.map(c => c.nivel).filter(Boolean))];
 
@@ -362,23 +469,81 @@
                 const option = document.createElement('option');
                 option.value = vertical;
                 option.textContent = vertical;
-                verticalFilter.appendChild(option);
+                verticalSelect.appendChild(option);
             });
 
             experiences.forEach(experience => {
                 const option = document.createElement('option');
                 option.value = experience;
                 option.textContent = experience;
-                experienceFilter.appendChild(option);
+                experienceSelect.appendChild(option);
             });
         }
 
-        function filterCandidates() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const selectedVertical = document.getElementById('verticalFilter').value;
-            const selectedExperience = document.getElementById('experienceFilter').value;
+        // Função para renderizar os candidatos
+        function renderCandidates(candidatesToRender) {
+            const candidatesList = document.getElementById('candidatesList');
+            candidatesList.innerHTML = '';
 
-            const filteredCandidates = candidates.filter(candidate => {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedCandidates = candidatesToRender.slice(startIndex, endIndex);
+
+            paginatedCandidates.forEach(candidate => {
+                const candidateCard = document.createElement('div');
+                candidateCard.className = 'bg-lilac-200 overflow-hidden shadow rounded-lg border border-lilac-300 transition duration-300 ease-in-out transform hover:scale-105';
+                candidateCard.innerHTML = `
+                    <div class="px-4 py-5 sm:p-6">
+                        <h4 class="text-lg font-semibold text-aubergine-800 mb-2">${candidate.nome}</h4>
+                        <p class="text-sm text-aubergine-700 flex items-center mb-2">
+                            <i class="bi bi-briefcase mr-2"></i>
+                            ${candidate.vertical}
+                        </p>
+                        <p class="text-sm text-aubergine-700 flex items-center mb-4">
+                            <i class="bi bi-people mr-2"></i>
+                            ${candidate.nivel || 'Não especificado'}
+                        </p>
+                        <a
+                            href="${candidate.link}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-aubergine-500 hover:bg-aubergine-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aubergine-500"
+                        >
+                            Ver Perfil
+                        </a>
+                    </div>
+                `;
+                candidatesList.appendChild(candidateCard);
+            });
+
+            updatePagination(candidatesToRender.length);
+        }
+
+        // Função para atualizar a paginação
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const pageInfo = document.getElementById('pageInfo');
+            pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+
+            const prevButton = document.getElementById('prevPage');
+            const nextButton = document.getElementById('nextPage');
+
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages;
+
+            prevButton.classList.toggle('opacity-50', currentPage === 1);
+            nextButton.classList.toggle('opacity-50', currentPage === totalPages);
+        }
+
+        let filteredCandidates = [];
+
+        // Função para filtrar candidatos
+        function filterCandidates() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const selectedVertical = document.getElementById('vertical').value;
+            const selectedExperience = document.getElementById('experience').value;
+
+            filteredCandidates = candidates.filter(candidate => {
                 const matchesSearch = candidate.nome.toLowerCase().includes(searchTerm) || 
                                       candidate.vertical.toLowerCase().includes(searchTerm) ||
                                       (candidate.nivel && candidate.nivel.toLowerCase().includes(searchTerm));
@@ -388,16 +553,37 @@
                 return matchesSearch && matchesVertical && matchesExperience;
             });
 
+            currentPage = 1; // Reset to first page when filtering
             renderCandidates(filteredCandidates);
+            updateStatistics(); // Atualiza as estatísticas após a filtragem
         }
 
-        document.getElementById('searchInput').addEventListener('input', filterCandidates);
-        document.getElementById('verticalFilter').addEventListener('change', filterCandidates);
-        document.getElementById('experienceFilter').addEventListener('change', filterCandidates);
+        // Event listeners
+        document.getElementById('search').addEventListener('input', filterCandidates);
+        document.getElementById('vertical').addEventListener('change', filterCandidates);
+        document.getElementById('experience').addEventListener('change', filterCandidates);
 
-        // Initial render
-        renderCandidates(candidates);
+        // Adicionando event listeners para os botões de paginação
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderCandidates(filteredCandidates);
+                updatePagination(filteredCandidates.length);
+            }
+        });
+
+        document.getElementById('nextPage').addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredCandidates.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderCandidates(filteredCandidates);
+                updatePagination(filteredCandidates.length);
+            }
+        });
+
+        // Inicialização
         populateFilters();
+        filterCandidates();
     </script>
 </body>
 </html>
